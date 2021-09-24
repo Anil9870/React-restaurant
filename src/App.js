@@ -1,6 +1,8 @@
 import React from 'react';
 import {Navbar , NavbarBrand} from 'reactstrap';
 
+import NavBarMenu from './components/NavBarMenu';
+
 
 const App = () => {
   return (
@@ -11,6 +13,7 @@ const App = () => {
                 <NavbarBrand href="/">REACT STRAP</NavbarBrand>
            </div> 
         </Navbar>
+        <NavBarMenu/>
     </div>
   )
 }
