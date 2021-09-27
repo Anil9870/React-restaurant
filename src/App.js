@@ -2,21 +2,31 @@ import React from 'react';
 import {Navbar , NavbarBrand} from 'reactstrap';
 
 import NavBarMenu from './components/NavBarMenu';
+import { DISHES } from './shared/dishes';
 
 
-const App = () => {
+class App extends React.Component {
+  constructor(props){
+    super(props);
+      this.state = {
+         dishes: DISHES
+      };
+  }
+  render(){
+
   return (
     <div className="App">
         <Navbar dark color="primary">
            <div className="container">
                 <NavbarBrand href="/">REACT STRAP</NavbarBrand>
-                <NavbarBrand href="/">REACT STRAP</NavbarBrand>
            </div> 
         </Navbar>
-        <NavBarMenu/>
+        <NavBarMenu dishes= {this.state.dishes}/>
     </div>
   )
-}
+
+  }
+};
 
 
 
