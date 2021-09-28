@@ -1,14 +1,7 @@
-import React, { Component, Fragment } from "react";
+import React, { Fragment } from "react";
 import { CardBody, Card, CardImg, List, CardTitle, CardText } from "reactstrap";
 
-class DishDetail extends Component {
-  constructor(props) {
-    super(props);
-    console.log(this.props.dish);
-  }
-
-  renderDish() {
-    const dish = this.props.dish;
+  const RenderDish = ({dish}) => {
     return (
       <Card>
         <CardImg width="100%" src={dish.image} alt={dish.name} />
@@ -20,8 +13,7 @@ class DishDetail extends Component {
     );
   }
 
-  renderComments() {
-    const dish = this.props.dish;
+  const RenderComments = ({dish}) => {
     const comments =
       dish.comments !== null
         ? dish.comments.map((comment) => {
@@ -30,7 +22,7 @@ class DishDetail extends Component {
                 <p>{comment.comment}</p>
                 <p>
                   --{comment.author} ,
-                  {new Intl.DateTimeFormat("en-US", {
+                  {new Intl.DateTimeFormat("en-IN", {
                     year: "numeric",
                     month: "short",
                     day: "2-digit",
@@ -43,16 +35,20 @@ class DishDetail extends Component {
     return comments;
   }
 
-  render() {
+  const DishDetail = ({dish}) => {
     return (
       <Fragment>
-        {(this.props.dish !== null && this.props.dish !== undefined)? (
+        {dish !== null && dish !== undefined ? (
           <div className="container">
             <div className="row">
-              <div className="col-12 col-md-5 m-1">{this.renderDish()}</div>
+              <div className="col-12 col-md-5 m-1">
+                 <RenderDish dish={dish}/>
+              </div>
               <div className="col-12 col-md-5 m-1">
                 <h4>Comments</h4>
-                <ul type="unstyled">{this.renderComments()}</ul>
+                <ul type="unstyled">
+                   <RenderComments dish={dish}/>
+                </ul>
               </div>
             </div>
           </div>
@@ -62,6 +58,5 @@ class DishDetail extends Component {
       </Fragment>
     );
   }
-}
 
 export default DishDetail;
