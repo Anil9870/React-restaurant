@@ -11,19 +11,19 @@ export const  DISHES = [
             id:1,
             comment: "Hello there first comment",
             author: "Anil Rapuru",
-            date: "27-09-2021"
+            date: "Jul 8, 2005"
          },
          {
             id:2,
             comment: "Hello there first comment",
             author: "Anil Rapuru",
-            date: "27-09-2021"
+            date: "Jul 8, 2005"
          },
          {
             id:3,
             comment: "Hello there first comment",
             author: "Anil Rapuru",
-            date: "27-09-2021"
+            date: "Jul 8, 2005"
          }
       ],
       description:'A unique combination of Indian Uthappam (pancake) and Italian pizza, topped with Cerignola olives, ripe vine cherry tomatoes, Vidalia onion, Guntur chillies and Buffalo Paneer.'                        },
@@ -39,19 +39,19 @@ export const  DISHES = [
             id:1,
             comment: "Hello there first comment",
             author: "Anil Rapuru",
-            date: "27-09-2021"
+            date: "Jul 8, 2005"
          },
          {
             id:2,
             comment: "Hello there first comment",
             author: "Anil Rapuru",
-            date: "27-09-2021"
+            date: "Jul 8, 2005"
          },
          {
             id:3,
             comment: "Hello there first comment",
             author: "Anil Rapuru",
-            date: "27-09-2021"
+            date: "Jul 8, 2005"
          }
       ],
       description:'Deep fried Zucchini coated with mildly spiced Chickpea flour batter accompanied with a sweet-tangy tamarind sauce'                        },
@@ -67,19 +67,19 @@ export const  DISHES = [
             id:1,
             comment: "Hello there first comment",
             author: "Anil Rapuru",
-            date: "27-09-2021"
+            date: "Jul 8, 2005"
          },
          {
             id:2,
             comment: "Hello there first comment",
             author: "Anil Rapuru",
-            date: "27-09-2021"
+            date: "Jul 8, 2005"
          },
          {
             id:3,
             comment: "Hello there first comment",
             author: "Anil Rapuru",
-            date: "27-09-2021"
+            date: "Jul 8, 2005"
          }
       ],
       description:'A quintessential ConFusion experience, is it a vada or is it a donut?'                        },

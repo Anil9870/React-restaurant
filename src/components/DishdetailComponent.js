@@ -1,16 +1,10 @@
-import React, { Component } from "react";
-import {
-  CardBody,
-  Card,
-  CardImg,
-  List,
-  CardTitle,
-  CardText,
-} from "reactstrap";
+import React, { Component, Fragment } from "react";
+import { CardBody, Card, CardImg, List, CardTitle, CardText } from "reactstrap";
 
 class DishDetail extends Component {
   constructor(props) {
     super(props);
+    console.log(this.props.dish);
   }
 
   renderDish() {
@@ -26,16 +20,21 @@ class DishDetail extends Component {
     );
   }
 
-  renderComments(){
+  renderComments() {
     const dish = this.props.dish;
     const comments =
       dish.comments !== null
         ? dish.comments.map((comment) => {
             return (
-              <li >
+              <li>
                 <p>{comment.comment}</p>
                 <p>
-                  --{comment.date} {comment.author}
+                  --{comment.author} ,
+                  {new Intl.DateTimeFormat("en-US", {
+                    year: "numeric",
+                    month: "short",
+                    day: "2-digit",
+                  }).format(new Date(Date.parse(comment.date)))}
                 </p>
               </li>
             );
@@ -46,21 +45,21 @@ class DishDetail extends Component {
 
   render() {
     return (
-      <>
-        {this.props.dish !== null ? (
-          <div className="row">
-            <div className="col-12 col-md-5 m-1">{this.renderDish()}</div>
-            <div className="col-12 col-md-5 m-1">
+      <Fragment>
+        {(this.props.dish !== null && this.props.dish !== undefined)? (
+          <div className="container">
+            <div className="row">
+              <div className="col-12 col-md-5 m-1">{this.renderDish()}</div>
+              <div className="col-12 col-md-5 m-1">
                 <h4>Comments</h4>
-                <List type="unstyled">
-                {this.renderComments()}
-                </List>
+                <ul type="unstyled">{this.renderComments()}</ul>
+              </div>
             </div>
           </div>
         ) : (
           ""
         )}
-      </>
+      </Fragment>
     );
   }
 }
