@@ -31,7 +31,7 @@ const RenderDish = ({ dish }) => {
   );
 };
 
-const RenderComments = ({ comments, addComment, dishId }) => {
+const RenderComments = ({ comments, postComment, dishId }) => {
   if (comments != null) {
     return (
       <div className="col-12 col-md-5 m-1">
@@ -53,17 +53,17 @@ const RenderComments = ({ comments, addComment, dishId }) => {
             );
           })}
         </ul>
-        <CommentForm dishId={dishId} addComment={addComment} />
+        <CommentForm dishId={dishId} postComment={postComment} />
       </div>
     );
   } else {
     <div>
-      <CommentForm dishId={dishId} addComment={addComment} />
+      <CommentForm dishId={dishId} postComment={postComment} />
     </div>;
   }
 };
 
-const DishDetail = ({ dish, comments, addComment, isLoading, errMess }) => {
+const DishDetail = ({ dish, comments, postComment, isLoading, errMess }) => {
   return (
     <Fragment>
       {isLoading ? (
@@ -90,7 +90,7 @@ const DishDetail = ({ dish, comments, addComment, isLoading, errMess }) => {
             </div>
             <RenderComments
               comments={comments}
-              addComment={addComment}
+              postComment={postComment}
               dishId={dish.id}
             />
           </div>
@@ -141,7 +141,7 @@ class CommentForm extends Component {
   handleSubmit(values) {
     //  console.log("Current State is: " + JSON.stringify(values));
     // alert("Current State is: " + JSON.stringify(values));
-    this.props.addComment(
+    this.props.postComment(
       this.props.dishId,
       values.rating,
       values.author,
