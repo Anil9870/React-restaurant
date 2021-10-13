@@ -1,6 +1,7 @@
 import * as ActionTypes from "./ActionTypes";
 import { DISHES } from "../shared/dishes";
 import { baseUrl } from "../shared/baseUrl";
+import { Promotions } from "./promotions";
 
 export const addComment = (comment) => ({
   type: ActionTypes.ADD_COMMENT,
@@ -161,3 +162,94 @@ export const addPromos = (promos) => ({
   type: ActionTypes.ADD_PROMOS,
   payload: promos,
 });
+
+/***************ASSIGNMENT4*****************************************/
+export const fetchLeaders = () => (dispatch) => {
+  dispatch(leadersLoading(true));
+
+  return fetch(baseUrl + "leaders")
+    .then(
+      (response) => {
+        if (response.ok) {
+          return response;
+        } else {
+          var error = new Error(
+            "Error " + response.status + ": " + response.statusText
+          );
+          error.response = response;
+          throw error;
+        }
+      },
+      (error) => {
+        var errmess = new Error(error.message);
+        throw errmess;
+      }
+    )
+    .then((response) => response.json())
+    .then((leaders) => dispatch(addLeaders(leaders)))
+    .catch((error) => dispatch(leadersFailed(error.message)));
+};
+
+export const leadersLoading = () => {
+  return {
+    type: ActionTypes.LEADERS_LOADING,
+  };
+};
+
+export const leadersFailed = (errmess) => {
+  return {
+    type: ActionTypes.LEADERS_FAILED,
+    payload: errmess,
+  };
+};
+
+export const addLeaders = (leaders) => {
+  return {
+    type: ActionTypes.ADD_LEADERS,
+    payload: leaders,
+  };
+};
+
+export const postFeedback = ({
+  firstname,lastname,telnum,email,agree,contactType,message,date
+}) => (dispatch) => {
+  var newFormFeedback = {};
+  newFormFeedback.firstname = firstname;
+  newFormFeedback.lastname = lastname;
+  newFormFeedback.telnum = telnum;
+  newFormFeedback.email = email;
+  newFormFeedback.agree = agree;
+  newFormFeedback.contactType = contactType;
+  newFormFeedback.message = message;
+  newFormFeedback.date = new Date().toISOString();
+
+  fetch(baseUrl + "feedback", {
+    method: "POST",
+    body: JSON.stringify(newFormFeedback),
+    headers: {
+      "Content-Type": "application/json",
+    },
+    credentials: "same-origin",
+  })
+    .then(
+      (response) => {
+        if (response.ok) {
+          return response;
+        } else {
+          var error = new Error(
+            "Error " + response.status + ": " + response.statusText
+          );
+          error.response = response;
+          throw error;
+        }
+      },
+      (error) => {
+        throw error;
+      }
+    )
+    .then((response) => response.json())
+    .catch((error) => {
+      // console.log("post comments", error.message);
+      alert("Your feedback could not be submitted\nError: " + error.message);
+    });
+};
